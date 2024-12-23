@@ -47,8 +47,8 @@ calc/
 
    ```bash
    mkdir build && cd build
-   conan install .. --build=missing
-   cmake ..
+   conan install .. --output-folder=build --build=missing
+   cmake -DCMAKE_BUILD_TYPE=Release ..
    make
    ```
 
