@@ -24,6 +24,9 @@
 *.gch
 *.pch
 
+# Build directories
+build/
+
 # CMake
 CMakeFiles/
 CMakeCache.txt
