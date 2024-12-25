@@ -22,6 +22,7 @@ private:
   double declaration();
   double expression();
   double term();
+  double factor();
   double primary();
 };
 

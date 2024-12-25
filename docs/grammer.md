@@ -26,17 +26,20 @@ Expression:
     Expression "-" Term
 
 Term:
+    Factor
+    Term "*" Factor
+    Term "/" Factor
+    Term "%" Factor
+
+Factor:
     Primary
-    Term "*" Primary
-    Term "/" Primary
-    Term "%" Primary
+    Factor "^" Primary
 
 Primary:
     Number
     "(" Expression ")"
     "-" Primary
     "+" Primary
-    Primary "^" Primary
 
 Number:
     floating-point-literal

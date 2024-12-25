@@ -8,7 +8,7 @@
 namespace calc {
 class Variables {
 public:
-  double get_value(const std::string &var);
+  double get_var(const std::string &var);
   bool is_declared(const std::string &name);
   void define_var(const std::string &name, double value);
   void set_value(const std::string &name, const double value);

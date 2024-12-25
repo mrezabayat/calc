@@ -2,25 +2,23 @@
 
 #include "Calculator.h"
 #include "Constants.h"
+#include <cmath>
 #include <iostream>
 
 namespace calc {
 
 void Calculator::run() {
+
   while (std::cin) {
     try {
       std::cout << ConstToken::prompt;
       Token token = m_tokenStream.get();
-      if (token.kind == ConstToken::quit) {
-        break;
-      }
-      if (token.kind == ConstToken::print) {
-        continue;
-      }
-
+      while (token.kind == ConstToken::print)
+        token = m_tokenStream.get();
+      if (token.kind == ConstToken::quit)
+        return;
       m_tokenStream.putback(token);
       std::cout << ConstToken::result << statement() << '\n';
-
     } catch (const std::exception &e) {
       std::cerr << e.what() << '\n';
       m_tokenStream.ignore(ConstToken::print);
@@ -75,17 +73,17 @@ double Calculator::expression() {
 }
 
 double Calculator::term() {
-  double left = primary();
+  double left = factor();
   Token t = m_tokenStream.get();
   while (true) {
     switch (t.kind) {
     case '*':
-      left *= primary();
+      left *= factor();
       t = m_tokenStream.get();
       break;
 
     case '/': {
-      double denum = primary();
+      double denum = factor();
       if (denum == 0)
         throw std::runtime_error("Division by zero.\n");
       left /= denum;
@@ -94,7 +92,7 @@ double Calculator::term() {
     }
 
     case '%': {
-      double denum = primary();
+      double denum = factor();
       if (denum == 0)
         throw std::runtime_error("%: dnum is zero\n");
       left = std::fmod(left, denum);
@@ -109,6 +107,17 @@ double Calculator::term() {
   }
 }
 
+double Calculator::factor() {
+  double base = primary();
+  Token t = m_tokenStream.get();
+  if (t.kind == '^') {
+    double exponent = factor();
+    return std::pow(base, exponent);
+  }
+  m_tokenStream.putback(t);
+  return base;
+}
+
 double Calculator::primary() {
   Token left = m_tokenStream.get();
 
@@ -121,7 +130,17 @@ double Calculator::primary() {
     return exp;
   }
   case ConstToken::number:
-    break;
+    return left.value;
+  case ConstToken::name: {
+    Token next = m_tokenStream.get();
+    if (next.kind == '=') {
+      double value = expression();
+      m_variables.define_var(left.name, value);
+      return value;
+    }
+    m_tokenStream.putback(next);
+    return m_variables.get_var(left.name);
+  }
   case '-':
     return -primary(); // Handle unary minus
   case '+':
@@ -129,17 +148,6 @@ double Calculator::primary() {
   default:
     throw std::runtime_error("Primary expected.\n");
   }
-
-  Token right = m_tokenStream.get();
-
-  if (right.kind == '^') {
-    double right = primary();
-    return std::pow(left.value, right);
-  }
-
-  m_tokenStream.putback(right);
-
-  return left.value;
 }
 
 } // namespace calc

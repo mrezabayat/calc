@@ -4,7 +4,7 @@
 
 namespace calc {
 
-double Variables::get_value(const std::string &var) {
+double Variables::get_var(const std::string &var) {
   if (m_variableTable.find(var) != m_variableTable.end()) {
     return m_variableTable[var];
   }
