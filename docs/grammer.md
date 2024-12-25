@@ -1,19 +1,43 @@
 # Calculator grammar
 
 ```plaintext
-<program>       ::= <statement> | <statement> <program>
+Calculation:
+    Statement
+    Print
+    Quit
+    Calculation Statement
 
-<statement>     ::= <assignment> | <expression>
+Statement:
+    Declaration
+    Expression
 
-<assignment>    ::= <identifier> '=' <expression>
+Declaration:
+    "let" name "=" Expression
 
-<expression>    ::= <term> | <expression> '+' <term> | <expression> '-' <term>
+Print:
+    ";"
 
-<term>          ::= <factor> | <term> '*' <factor> | <term> '/' <factor>
+Quit:
+    "q"
 
-<factor>        ::= <number> | <identifier> | '(' <expression> ')'
+Expression:
+    Term
+    Expression "+" Term
+    Expression "-" Term
 
-<identifier>    ::= [a-zA-Z_] [a-zA-Z0-9_]*
+Term:
+    Primary
+    Term "*" Primary
+    Term "/" Primary
+    Term "%" Primary
 
-<number>        ::= [0-9]+ ('.' [0-9]+)?
+Primary:
+    Number
+    "(" Expression ")"
+    "-" Primary
+    "+" Primary
+    Primary "^" Primary
+
+Number:
+    floating-point-literal
 ```

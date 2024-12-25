@@ -9,7 +9,14 @@ list(APPEND CMAKE_MODULE_PATH ${CMAKE_BINARY_DIR})
 find_package(GTest REQUIRED)
 
 add_executable(calc
+    src/Calculator.cpp
+    src/Calculator.h
+    src/Constants.h
     src/main.cpp
+    src/TokenStream.cpp
+    src/TokenStream.h
+    src/Variables.cpp
+    src/Variables.h
 )
 
 target_link_libraries(calc gtest::gtest)
