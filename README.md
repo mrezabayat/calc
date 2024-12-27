@@ -2,15 +2,11 @@
 
 A versatile and efficient C++ calculator with support for arithmetic operations, variables, and expression evaluation. This project is structured for clarity and scalability, offering modular components for tokenization, parsing, evaluation, and symbol management.
 
----
-
 ## Features
 
 - **Arithmetic Operations**: Supports `+`, `-`, `*`, `/`, and `^` (exponentiation).  
 - **Variables**: Assign and reuse variables (e.g., `let x = 5; let y = x + 3`).  
 - **Parentheses**: Group expressions for priority operations (e.g., `(x + 2) * 3`).  
-
----
 
 ## Project Overview
 
@@ -36,8 +32,6 @@ calc/
     └── main.cpp            # Application entry point
 ```
 
----
-
 ## Getting Started
 
 ### Prerequisites
@@ -48,12 +42,14 @@ calc/
 ### Build and Run Instructions
 
 1. **Clone the repository**:
+
    ```bash
    git clone https://github.com/mrezabayat/calc.git
    cd calc
    ```
 
 2. **Build the project**:
+
    ```bash
    mkdir build && cd build
    cmake ..
@@ -61,11 +57,10 @@ calc/
    ```
 
 3. **Run the calculator**:
+
    ```bash
    ./calc
    ```
-
----
 
 ## Usage Example
 
@@ -79,28 +74,21 @@ calc/
 
 Explore complex expressions, assign variables, and evaluate with ease!
 
----
-
 ## Grammar Definition
 
 The calculator's grammar syntax is defined in [docs/grammar.md](docs/grammar.md). It outlines the rules for writing valid expressions, assignments, and operations.
-
----
 
 ## Contributing
 
 Contributions are welcome and encouraged!  
 To contribute:
+
 1. Fork the repository.  
 2. Create a feature branch.  
 3. Submit a pull request with detailed notes on your changes.  
 
----
-
 ## License
 
 This project is released under the [MIT License](LICENSE), permitting use, modification, and distribution under the terms of the license.
-
----
 
 Developed with a focus on simplicity, readability, and extensibility. Whether you're a beginner or an expert, this calculator is a great way to explore or showcase modular C++ development.
