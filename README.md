@@ -1,68 +1,73 @@
 # Calculator Project
 
-This project implements a simple calculator in C++ that supports variables and arithmetic operations. The calculator is capable of handling basic expressions, assignments, and variable evaluation. It is built with modular components for tokenization, parsing, evaluation, and symbol management.
+A versatile and efficient C++ calculator with support for arithmetic operations, variables, and expression evaluation. This project is structured for clarity and scalability, offering modular components for tokenization, parsing, evaluation, and symbol management.
+
+---
 
 ## Features
 
-- Arithmetic operations: `+`, `-`, `*`, `/`
-- Support for variables (e.g., `x = 5; y = x + 3`)
-- Parentheses for grouping expressions (e.g., `(x + 2) * 3`)
-- Modular design with lexer, parser, and evaluator components
+- **Arithmetic Operations**: Supports `+`, `-`, `*`, `/`, and `^` (exponentiation).  
+- **Variables**: Assign and reuse variables (e.g., `let x = 5; let y = x + 3`).  
+- **Parentheses**: Group expressions for priority operations (e.g., `(x + 2) * 3`).  
 
-## Project Structure
+---
+
+## Project Overview
+
+The project is designed with a clean modular structure to facilitate ease of understanding, testing, and expansion:
 
 ```plaintext
 calc/
-├── src/
-│   ├── main.cpp           # Entry point of the application
-│   ├── lexer.cpp/.h       # Tokenizer for input strings
-│   ├── parser.cpp/.h      # Parser for expressions and statements
-│   ├── evaluator.cpp/.h   # Evaluates parsed expressions
-│   ├── symbol_table.cpp/.h # Stores and retrieves variables
-├── tests/                 # Unit tests for components
-├── CMakeLists.txt         # Build configuration
-├── README.md              # Project documentation
-└── docs/
-    └── grammar.md         # Formal grammar for the calculator
+.
+├── CMakeLists.txt          # Build configuration
+├── LICENSE                 # Project license
+├── README.md               # Documentation
+├── docs/                   
+│   └── grammar.md          # Calculator grammar definition
+└── src/
+    ├── Calculator.cpp      # Core calculator logic
+    ├── Calculator.h        # Header for Calculator class
+    ├── Constants.h         # Project constants and settings
+    ├── Token.h             # Token definitions
+    ├── TokenStream.cpp     # Tokenization implementation
+    ├── TokenStream.h       # Header for TokenStream class
+    ├── Variables.cpp       # Variable management implementation
+    ├── Variables.h         # Header for Variables class
+    └── main.cpp            # Application entry point
 ```
 
-## Build and Run
+---
+
+## Getting Started
 
 ### Prerequisites
 
-- C++17 or later
-- CMake 3.15 or later
-- A C++ compiler (e.g., GCC, Clang, MSVC)
+- A **C++20** compliant compiler (e.g., GCC, Clang, MSVC).
+- **CMake 3.15** or newer for build automation.
 
-### Steps
+### Build and Run Instructions
 
-1. Clone the repository:
-
+1. **Clone the repository**:
    ```bash
-   git clone https://github.com/your-username/calculator.git
-   cd calculator
+   git clone https://github.com/mrezabayat/calc.git
+   cd calc
    ```
 
-2. Build the project:
-
+2. **Build the project**:
    ```bash
    mkdir build && cd build
-   conan install .. --output-folder=build --build=missing
-   cmake -DCMAKE_BUILD_TYPE=Release ..
-   make
+   cmake ..
+   cmake --build .
    ```
 
-3. Run the program:
-
+3. **Run the calculator**:
    ```bash
    ./calc
    ```
 
-## Grammar
+---
 
-The grammar for the calculator is stored in [docs/grammar.md](docs/grammar.md). This document defines the syntax rules for valid expressions, assignments, and operations.
-
-## Example Usage
+## Usage Example
 
 ```plaintext
 > x = 5
@@ -72,20 +77,30 @@ The grammar for the calculator is stored in [docs/grammar.md](docs/grammar.md). 
 24
 ```
 
-## Testing
+Explore complex expressions, assign variables, and evaluate with ease!
 
-Unit tests are located in the `tests/` directory. Run the tests with:
+---
 
-```bash
-cd build
-ctest
-```
+## Grammar Definition
+
+The calculator's grammar syntax is defined in [docs/grammar.md](docs/grammar.md). It outlines the rules for writing valid expressions, assignments, and operations.
+
+---
 
 ## Contributing
 
-Contributions are welcome! Please fork the repository and submit a pull request.
+Contributions are welcome and encouraged!  
+To contribute:
+1. Fork the repository.  
+2. Create a feature branch.  
+3. Submit a pull request with detailed notes on your changes.  
+
+---
 
 ## License
 
-This project is licensed under the MIT License. See [LICENSE](LICENSE) for details.
+This project is released under the [MIT License](LICENSE), permitting use, modification, and distribution under the terms of the license.
 
+---
+
+Developed with a focus on simplicity, readability, and extensibility. Whether you're a beginner or an expert, this calculator is a great way to explore or showcase modular C++ development.
